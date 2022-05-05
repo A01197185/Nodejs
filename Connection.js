@@ -1,19 +1,15 @@
-const sql = require('mssql');
+const sql = require('mysql');
 
 const dbSettings = {
+    host: 'localhost',
     user: 'test',
     password: '123',
-    server: 'localhost',
-    database: 'testDB',
-    options:{
-        encrypt: true,
-        trustServerCertificate: true
-    }
+    database: 'testDB'
 }
 
 async function getConnection(){
     try{
-        const pool = await sql.connect(dbSettings);
+        const pool = await sql.createConnection(dbSettings);
         return pool;
     }
     catch(error){

@@ -7,4 +7,4 @@ router.get('', cont.getEU);
 router.get('', cont.getAS);
 router.get('', cont.getOC);
 
-module.exports = routes;
+module.exports  = router;
