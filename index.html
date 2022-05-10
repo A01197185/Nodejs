@@ -39,31 +39,31 @@
                         <p v-if="nA">This is a list of countries in {{r1}}</p>
                         <ol v-if="nA">
                         <li v-for="msg in pNA">
-                        {{ msg.paises }}
+                        {{ msg.countryName }}
                         </li>
                         </ol>
                     </div>
                     <div class="col-3">
                         <p v-if="europe">This is a list of countries in {{r2}}</p>
                         <ol v-if="europe">
-                        <li v-for="msg in bucl2">
-                        {{ msg.paises }}
+                        <li v-for="msg in pEU">
+                        {{ msg.countryName }}
                         </li>
                         </ol>
                     </div>
                     <div class="col-3">
                         <p v-if="asia">This is a list of countries in {{r3}}</p>
                         <ol v-if="asia">
-                        <li v-for="msg in bucl3">
-                        {{ msg.paises }}
+                        <li v-for="msg in pAS">
+                        {{ msg.countryName }}
                         </li>
                         </ol>
                     </div>
                     <div class="col-3">
                         <p v-if="oceania">This is a list of countries in {{r4}}</p>
                         <ol v-if="oceania">
-                        <li v-for="msg in bucl4">
-                        {{ msg.paises }}
+                        <li v-for="msg in pOC">
+                        {{ msg.countryName }}
                         </li>
                         </ol>
                     </div>

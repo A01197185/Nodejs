@@ -1,6 +1,7 @@
 const p5 = Vue.createApp({ 
     data() {
         return{
+            urlBase: 'http://localhost:5000',
             nA: false,
             europe: false,
             asia: false,
@@ -9,30 +10,13 @@ const p5 = Vue.createApp({
             r2: 'Europe',
             r3: 'Asia',
             r4: 'Oceania',
-            pNA: {
-                Id: null,
-                paises: ''
-            },
-            pEU: {
-                Id: null,
-                paises: ''
-            },
-            pAS: {
-                Id: null,
-                paises: ''
-            },pOC: {
-                Id: null,
-                paises: ''
-            },
-            urlBase: 'http://localhost:5000'
+            pNA: [],
+            pEU: [],
+            pAS: [],
+            pOC: [],
         }
     },
     methods: {
-        async getNA(){
-            const dbNA = await this.CallApi(this.urlBase, 'GET', null);
-            this.pNA.Id = dbNA[0].id;
-            this.pNA.paises = dbNA[0].countryName;
-        },
         async CallApi(url, method, data){
             const header = data == null? { 	method: method,
                                             headers: { 'Content-Type': 'application/json' }} :
@@ -45,7 +29,7 @@ const p5 = Vue.createApp({
                 return await response.json();
             }
             catch(error){
-                alert('Hubo un error favor de contactar al admnistrador.');
+                alert('error');
             }
         },
         rNA(){
@@ -61,6 +45,26 @@ const p5 = Vue.createApp({
             this.oceania = !this.oceania
         }
     },
+    mounted() {
+        Promise.all([
+            fetch('http://localhost:5000/getNA')
+            .then(res => res.json())
+            .then(data => this.pNA = data)
+            .catch(err => console.log(err.message)),
+            fetch('http://localhost:5000/getEU')
+            .then(res => res.json())
+            .then(data => this.pEU = data)
+            .catch(err => console.log(err.message)),
+            fetch('http://localhost:5000/getAS')
+            .then(res => res.json())
+            .then(data => this.pAS = data)
+            .catch(err => console.log(err.message)),
+            fetch('http://localhost:5000/getOC')
+            .then(res => res.json())
+            .then(data => this.pOC = data)
+            .catch(err => console.log(err.message))
+        ]).then(console.log)        
+    }
 });
 p5.mount('#p5')
 

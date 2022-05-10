@@ -2,9 +2,9 @@ const express = require('express');
 const cont = require('./Controller');
 const router = express.Router();
 
-router.get('', cont.getNA);
-router.get('', cont.getEU);
-router.get('', cont.getAS);
-router.get('', cont.getOC);
+router.get('/getNA', cont.getNA);
+router.get('/getEU', cont.getEU);
+router.get('/getAS', cont.getAS);
+router.get('/getOC', cont.getOC);
 
 module.exports  = router;
